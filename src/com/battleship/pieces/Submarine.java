@@ -1,15 +1,14 @@
 package com.battleship.pieces;
 
-public class BattleShip {
-
+public class Submarine {
     private int size;
 
     private int[][] location;
 
     private boolean[] hit;
 
-    public BattleShip(){
-        size = 4;
+    public Submarine(){
+        size = 3;
         location = new int[size][2];
         hit = new boolean[size];
 
@@ -57,5 +56,4 @@ public class BattleShip {
         }
         return true;
     }
-
 }
