@@ -71,7 +71,11 @@ public class Player {
         }
     }
 
+    public GameBoard getShips() {
+        return ships;
+    }
 
-
-
+    public GameBoard getMoves() {
+        return moves;
+    }
 }
