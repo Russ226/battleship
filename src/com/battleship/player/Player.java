@@ -48,13 +48,25 @@ public class Player {
     // u = up
     // d = down
     public void insertCarrier(char align, char direction, int col, int row){
-        if(align == 'h' && direction == 'r' && row + 5 < 10){
-            
-        }if(align == 'h' && direction == 'l' && row - 5 > 0){
+        if(align == 'h' && direction == 'r' && col + 5 < 10){
+            for(int i = 0; i < 5; i++){
+                ships.insert(col + i, row, 5);
+            }
 
-        }if(align == 'v' && direction == 'u' && col - 5 > 0){
+        }if(align == 'h' && direction == 'l' && col - 5 > 0){
+            for(int i = 0; i < 5; i++){
+                ships.insert(col - i, row, 5);
+            }
 
-        }if(align == 'v' && direction == 'd' && col + 5 < 10){
+        }if(align == 'v' && direction == 'u' && row - 5 > 0){
+            for(int i = 0; i < 5; i++){
+                ships.insert(col, row - i, 5);
+            }
+
+        }if(align == 'v' && direction == 'd' && row + 5 < 10){
+            for(int i = 0; i < 5; i++){
+                ships.insert(col, row + i, 5);
+            }
 
         }
     }

@@ -19,4 +19,13 @@ public class GameBoard {
     public int getTile(int col, int row){
         return board[col][row];
     }
+
+    public void printBoard(){
+        for(int i = 0; i < 10; i++){
+            System.out.print("\n");
+            for(int j = 0; j < 10; j++){
+                System.out.print(board[i][j] + " ");
+            }
+        }
+    }
 }
