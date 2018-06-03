@@ -7,15 +7,13 @@ public class Carrier {
 
     private int[][] location;
 
-    private boolean[] hit;
+    private boolean sunk;
 
     public Carrier(){
         size = 5;
         location = new int[size][2];
-        hit = new boolean[size];
 
         for(int i = 0; i < size; i++){
-            hit[i] = false;
             for(int j = 0; j < 2; j++){
                 location[i][j] = 0;
             }
@@ -35,29 +33,11 @@ public class Carrier {
         return size;
     }
 
-    public boolean hitPart(int col , int row){
-
-        for(int i = 0; i < size; i++){
-            if(location[i][0] == col && location[i][1] == row){
-                hit[i] = true;
-            }
-        }
-        if(checkIfSunk()){
-            return true;
-        }
-
-        return false;
-
+    public boolean isSunk() {
+        return sunk;
     }
 
-    private boolean checkIfSunk(){
-        for(int i = 0; i < size; i++){
-            if(!hit[i]){
-             return false;
-            }
-        }
-        return true;
+    public void setSunk(boolean sunk) {
+        this.sunk = sunk;
     }
-
-
 }
