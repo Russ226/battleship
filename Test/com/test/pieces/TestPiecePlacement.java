@@ -150,4 +150,184 @@ public class TestPiecePlacement {
         assertEquals(player.getShips().getTile(5, 6), 4);
         assertEquals(player.getShips().getTile(5, 7), 4);
     }
+
+    @Test
+    public void testCruiserPlacementHorzRight(){
+        Player player =  new Player();
+
+        player.insertCruiser('h', 'r', 4, 5);
+
+        assertEquals(player.getShips().getTile(4, 5), 3);
+        assertEquals(player.getShips().getTile(5, 5), 3);
+        assertEquals(player.getShips().getTile(6, 5), 3);
+
+
+    }
+
+    @Test
+    public void testCruiserPlacementHorzRightFail(){
+        Player player =  new Player();
+
+        player.insertCruiser('h', 'r', 8, 5);
+
+        assertEquals(player.getShips().getTile(5, 5), 0);
+        assertEquals(player.getShips().getTile(6, 5), 0);
+        assertEquals(player.getShips().getTile(7, 5), 0);
+
+
+    }
+
+    @Test
+    public void testCruiserPlacementHorzleft(){
+        Player player =  new Player();
+
+        player.insertCruiser('h', 'l', 6, 5);
+
+        assertEquals(player.getShips().getTile(6, 5), 3);
+        assertEquals(player.getShips().getTile(5, 5), 3);
+        assertEquals(player.getShips().getTile(4, 5), 3);
+
+
+    }
+
+    @Test
+    public void testCruiserPlacementVertUp(){
+        Player player =  new Player();
+
+        player.insertCruiser('v', 'u', 5, 4);
+
+        assertEquals(player.getShips().getTile(5, 4), 3);
+        assertEquals(player.getShips().getTile(5, 5), 3);
+        assertEquals(player.getShips().getTile(5, 6), 3);
+
+
+    }
+
+    @Test
+    public void testCruiserPlacementVertDown(){
+        Player player =  new Player();
+
+        player.insertCruiser('v', 'd', 5, 6);
+
+        assertEquals(player.getShips().getTile(5, 6), 3);
+        assertEquals(player.getShips().getTile(5, 5), 3);
+        assertEquals(player.getShips().getTile(5, 4), 3);
+
+    }
+
+    @Test
+    public void testDestroyerPlacementHorzRight(){
+        Player player =  new Player();
+
+        player.insertDestroyer('h', 'r', 4, 5);
+
+        assertEquals(player.getShips().getTile(4, 5), 2);
+        assertEquals(player.getShips().getTile(5, 5), 2);
+
+
+
+    }
+
+    @Test
+    public void testDestroyerPlacementHorzRightFail(){
+        Player player =  new Player();
+
+        player.insertDestroyer('h', 'r', 9, 5);
+
+        assertEquals(player.getShips().getTile(5, 5), 0);
+        assertEquals(player.getShips().getTile(6, 5), 0);
+    }
+
+    @Test
+    public void testDestroyerPlacementHorzleft(){
+        Player player =  new Player();
+
+        player.insertDestroyer('h', 'l', 6, 5);
+
+        assertEquals(player.getShips().getTile(6, 5), 2);
+        assertEquals(player.getShips().getTile(5, 5), 2);
+    }
+
+    @Test
+    public void testDestroyerPlacementVertUp(){
+        Player player =  new Player();
+
+        player.insertDestroyer('v', 'u', 5, 4);
+
+        assertEquals(player.getShips().getTile(5, 4), 2);
+        assertEquals(player.getShips().getTile(5, 5), 2);
+    }
+
+    @Test
+    public void testDestroyerPlacementVertDown(){
+        Player player =  new Player();
+
+        player.insertDestroyer('v', 'd', 5, 6);
+
+        assertEquals(player.getShips().getTile(5, 6), 2);
+        assertEquals(player.getShips().getTile(5, 5), 2);
+
+    }
+
+    @Test
+    public void testSubmarinePlacementHorzRight(){
+        Player player =  new Player();
+
+        player.insertSubmarine('h', 'r', 4, 5);
+
+        assertEquals(player.getShips().getTile(4, 5), 1);
+        assertEquals(player.getShips().getTile(5, 5), 1);
+
+
+
+    }
+
+    @Test
+    public void testSubmarinePlacementHorzRightFail(){
+        Player player =  new Player();
+
+        player.insertSubmarine('h', 'r', 9, 5);
+
+        assertEquals(player.getShips().getTile(5, 5), 0);
+        assertEquals(player.getShips().getTile(6, 5), 0);
+    }
+
+    @Test
+    public void testSubmarinePlacementHorzleft(){
+        Player player =  new Player();
+
+        player.insertSubmarine('h', 'l', 6, 5);
+
+        assertEquals(player.getShips().getTile(6, 5), 1);
+        assertEquals(player.getShips().getTile(5, 5), 1);
+    }
+
+    @Test
+    public void testSubmarinePlacementVertUp(){
+        Player player =  new Player();
+
+        player.insertSubmarine('v', 'u', 5, 4);
+
+        assertEquals(player.getShips().getTile(5, 4), 1);
+        assertEquals(player.getShips().getTile(5, 5), 1);
+    }
+
+    @Test
+    public void testSubmarinePlacementVertDown(){
+        Player player =  new Player();
+
+        player.insertSubmarine('v', 'd', 5, 6);
+
+        assertEquals(player.getShips().getTile(5, 6), 1);
+        assertEquals(player.getShips().getTile(5, 5), 1);
+
+    }
+
+    @Test
+    public void testIntersection(){
+        Player player =  new Player();
+
+        assertEquals(player.insertSubmarine('v', 'd', 5, 6), true);
+        assertEquals(player.insertDestroyer('v', 'd', 5, 6), false);
+    }
 }

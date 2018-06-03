@@ -66,6 +66,9 @@ public class Player {
         if(!carrier){
             if(align == 'h' && direction == 'r' && col + 5 < 10){
                 for(int i = 0; i < 5; i++){
+                    if(shipsBoard.getTile(col + i, row) != 0){
+                        return false;
+                    }
                     shipsBoard.insert(col + i, row, 5);
                 }
                 carrier = !carrier;
@@ -74,6 +77,9 @@ public class Player {
 
             }if(align == 'h' && direction == 'l' && col - 5 > 0){
                 for(int i = 0; i < 5; i++){
+                    if(shipsBoard.getTile(col - i, row) != 0){
+                        return false;
+                    }
                     shipsBoard.insert(col - i, row, 5);
                 }
                 carrier = !carrier;
@@ -82,6 +88,9 @@ public class Player {
 
             }if(align == 'v' && direction == 'u' && row + 5 < 10){
                 for(int i = 0; i < 5; i++){
+                    if(shipsBoard.getTile(col, row + i) != 0){
+                        return false;
+                    }
                     shipsBoard.insert(col, row + i, 5);
                 }
                 carrier = !carrier;
@@ -90,6 +99,9 @@ public class Player {
 
             }if(align == 'v' && direction == 'd' && row - 5 > 0){
                 for(int i = 0; i < 5; i++){
+                    if(shipsBoard.getTile(col, row - i) != 0){
+                        return false;
+                    }
                     shipsBoard.insert(col, row - i, 5);
                 }
                 carrier = !carrier;
@@ -106,6 +118,9 @@ public class Player {
         if(!battleShip){
             if(align == 'h' && direction == 'r' && col + 4 < 10){
                 for(int i = 0; i < 5; i++){
+                    if(shipsBoard.getTile(col + i, row) != 0){
+                        return false;
+                    }
                     shipsBoard.insert(col + i, row, 4);
                 }
                 battleShip = !battleShip;
@@ -114,6 +129,9 @@ public class Player {
 
             }if(align == 'h' && direction == 'l' && col - 4 > 0){
                 for(int i = 0; i < 5; i++){
+                    if(shipsBoard.getTile(col - i, row) != 0){
+                        return false;
+                    }
                     shipsBoard.insert(col - i, row, 4);
                 }
                 battleShip = !battleShip;
@@ -122,6 +140,9 @@ public class Player {
 
             }if(align == 'v' && direction == 'u' && row + 4 < 10){
                 for(int i = 0; i < 5; i++){
+                    if(shipsBoard.getTile(col, row + i) != 0){
+                        return false;
+                    }
                     shipsBoard.insert(col, row + i, 4);
                 }
                 battleShip = !battleShip;
@@ -130,9 +151,168 @@ public class Player {
 
             }if(align == 'v' && direction == 'd' && row - 4 > 0){
                 for(int i = 0; i < 5; i++){
+                    if(shipsBoard.getTile(col, row - i) != 0){
+                        return false;
+                    }
                     shipsBoard.insert(col, row - i, 4);
                 }
                 battleShip = !battleShip;
+                shipPieces++;
+                return true;
+
+            }
+        }
+        return false;
+
+    }
+
+    public boolean insertCruiser(char align, char direction, int col, int row){
+        if(!cruiser){
+            if(align == 'h' && direction == 'r' && col + 3 < 10){
+                for(int i = 0; i < 5; i++){
+                    if(shipsBoard.getTile(col + i, row) != 0){
+                        return false;
+                    }
+                    shipsBoard.insert(col + i, row, 3);
+                }
+                cruiser = !cruiser;
+                shipPieces++;
+                return true;
+
+            }if(align == 'h' && direction == 'l' && col - 3 > 0){
+                for(int i = 0; i < 5; i++){
+                    if(shipsBoard.getTile(col - i, row) != 0){
+                        return false;
+                    }
+                    shipsBoard.insert(col - i, row, 3);
+                }
+                cruiser = !cruiser;
+                shipPieces++;
+                return true;
+
+            }if(align == 'v' && direction == 'u' && row + 3 < 10){
+                for(int i = 0; i < 5; i++){
+                    if(shipsBoard.getTile(col, row + i) != 0){
+                        return false;
+                    }
+                    shipsBoard.insert(col, row + i, 3);
+                }
+                cruiser = !cruiser;
+                shipPieces++;
+                return true;
+
+            }if(align == 'v' && direction == 'd' && row - 3 > 0){
+                for(int i = 0; i < 5; i++){
+                    if(shipsBoard.getTile(col, row - i) != 0){
+                        return false;
+                    }
+                    shipsBoard.insert(col, row - i, 3);
+                }
+                cruiser = !cruiser;
+                shipPieces++;
+                return true;
+
+            }
+        }
+        return false;
+
+    }
+
+    public boolean insertDestroyer(char align, char direction, int col, int row){
+        if(!destroyer){
+            if(align == 'h' && direction == 'r' && col + 2 < 10){
+                for(int i = 0; i < 5; i++){
+                    if(shipsBoard.getTile(col + i, row) != 0){
+                        return false;
+                    }
+                    shipsBoard.insert(col + i, row, 2);
+                }
+                destroyer = !destroyer;
+                shipPieces++;
+                return true;
+
+            }if(align == 'h' && direction == 'l' && col - 2 > 0){
+                for(int i = 0; i < 5; i++){
+                    if(shipsBoard.getTile(col - i, row) != 0){
+                        return false;
+                    }
+                    shipsBoard.insert(col - i, row, 2);
+                }
+                destroyer = !destroyer;
+                shipPieces++;
+                return true;
+
+            }if(align == 'v' && direction == 'u' && row + 2 < 10){
+                for(int i = 0; i < 5; i++){
+                    if(shipsBoard.getTile(col, row + i) != 0){
+                        return false;
+                    }
+                    shipsBoard.insert(col, row + i, 2);
+                }
+                destroyer = !destroyer;
+                shipPieces++;
+                return true;
+
+            }if(align == 'v' && direction == 'd' && row - 2 > 0){
+                for(int i = 0; i < 5; i++){
+                    if(shipsBoard.getTile(col, row - i) != 0){
+                        return false;
+                    }
+                    shipsBoard.insert(col, row - i, 2);
+                }
+                destroyer = !destroyer;
+                shipPieces++;
+                return true;
+
+            }
+        }
+        return false;
+
+    }
+
+    public boolean insertSubmarine(char align, char direction, int col, int row){
+        if(!submarine){
+            if(align == 'h' && direction == 'r' && col + 2 < 10){
+                for(int i = 0; i < 5; i++){
+                    if(shipsBoard.getTile(col + i, row) != 0){
+                        return false;
+                    }
+                    shipsBoard.insert(col + i, row, 1);
+                }
+                submarine = !submarine;
+                shipPieces++;
+                return true;
+
+            }if(align == 'h' && direction == 'l' && col - 2 > 0){
+                for(int i = 0; i < 5; i++){
+                    if(shipsBoard.getTile(col - i, row) != 0){
+                        return false;
+                    }
+                    shipsBoard.insert(col - i, row, 1);
+                }
+                submarine = !submarine;
+                shipPieces++;
+                return true;
+
+            }if(align == 'v' && direction == 'u' && row + 2 < 10){
+                for(int i = 0; i < 5; i++){
+                    if(shipsBoard.getTile(col, row + i) != 0){
+                        return false;
+                    }
+                    shipsBoard.insert(col, row + i, 1);
+                }
+                submarine = !submarine;
+                shipPieces++;
+                return true;
+
+            }if(align == 'v' && direction == 'd' && row - 2 > 0){
+                for(int i = 0; i < 5; i++){
+                    if(shipsBoard.getTile(col, row - i) != 0){
+                        return false;
+                    }
+                    shipsBoard.insert(col, row - i, 1);
+                }
+                submarine = !submarine;
                 shipPieces++;
                 return true;
 
