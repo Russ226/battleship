@@ -28,19 +28,19 @@ public class Player {
 //    // appears as 5 on board
 //    private Destroyer destroyer;
 
-    // appears as 1 on board
+    // appears as 5 on board
     private boolean carrier;
 
-    // appears as 2 on board
+    // appears as 4 on board
     private boolean battleShip;
 
     // appears as 3 on board
     private boolean cruiser;
 
-    // appears as 4 on board
+    // appears as 2 on board
     private boolean submarine;
 
-    // appears as 5 on board
+    // appears as 1 on board
     private boolean destroyer;
 
     public Player(){
@@ -62,7 +62,7 @@ public class Player {
     // r= right
     // u = up
     // d = down
-    public void insertCarrier(char align, char direction, int col, int row){
+    public boolean insertCarrier(char align, char direction, int col, int row){
         if(!carrier){
             if(align == 'h' && direction == 'r' && col + 5 < 10){
                 for(int i = 0; i < 5; i++){
@@ -70,6 +70,7 @@ public class Player {
                 }
                 carrier = !carrier;
                 shipPieces++;
+                return true;
 
             }if(align == 'h' && direction == 'l' && col - 5 > 0){
                 for(int i = 0; i < 5; i++){
@@ -77,6 +78,7 @@ public class Player {
                 }
                 carrier = !carrier;
                 shipPieces++;
+                return true;
 
             }if(align == 'v' && direction == 'u' && row + 5 < 10){
                 for(int i = 0; i < 5; i++){
@@ -84,6 +86,7 @@ public class Player {
                 }
                 carrier = !carrier;
                 shipPieces++;
+                return true;
 
             }if(align == 'v' && direction == 'd' && row - 5 > 0){
                 for(int i = 0; i < 5; i++){
@@ -91,9 +94,51 @@ public class Player {
                 }
                 carrier = !carrier;
                 shipPieces++;
+                return true;
 
             }
         }
+        return false;
+
+    }
+
+    public boolean insertBattleShip(char align, char direction, int col, int row){
+        if(!battleShip){
+            if(align == 'h' && direction == 'r' && col + 4 < 10){
+                for(int i = 0; i < 5; i++){
+                    shipsBoard.insert(col + i, row, 4);
+                }
+                battleShip = !battleShip;
+                shipPieces++;
+                return true;
+
+            }if(align == 'h' && direction == 'l' && col - 4 > 0){
+                for(int i = 0; i < 5; i++){
+                    shipsBoard.insert(col - i, row, 4);
+                }
+                battleShip = !battleShip;
+                shipPieces++;
+                return true;
+
+            }if(align == 'v' && direction == 'u' && row + 4 < 10){
+                for(int i = 0; i < 5; i++){
+                    shipsBoard.insert(col, row + i, 4);
+                }
+                battleShip = !battleShip;
+                shipPieces++;
+                return true;
+
+            }if(align == 'v' && direction == 'd' && row - 4 > 0){
+                for(int i = 0; i < 5; i++){
+                    shipsBoard.insert(col, row - i, 4);
+                }
+                battleShip = !battleShip;
+                shipPieces++;
+                return true;
+
+            }
+        }
+        return false;
 
     }
 
@@ -103,5 +148,9 @@ public class Player {
 
     public GameBoard getMoveBoard() {
         return moveBoard;
+    }
+
+    public int getShipPieces() {
+        return shipPieces;
     }
 }
