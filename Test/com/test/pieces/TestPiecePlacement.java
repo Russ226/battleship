@@ -330,4 +330,15 @@ public class TestPiecePlacement {
         assertEquals(player.insertSubmarine('v', 'd', 5, 6), true);
         assertEquals(player.insertDestroyer('v', 'd', 5, 6), false);
     }
+
+    @Test
+    public void testChangeShipPositions(){
+        Player player =  new Player();
+
+        assertEquals(player.insertSubmarine('v', 'd', 5, 6), true);
+        assertEquals(player.changeShipInsert(1,'v', 'u',2,2), true);
+        assertEquals(player.getShips().getTile(5,6), 0);
+        assertEquals(player.getShips().getTile(2,2), 1);
+
+    }
 }
