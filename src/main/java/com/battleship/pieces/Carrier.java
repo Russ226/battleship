@@ -5,39 +5,46 @@ public class Carrier {
 
     private int size;
 
-    private int[][] location;
+    private int health;
 
-    private boolean sunk;
+    private boolean alive;
+
+    private boolean placed;
 
     public Carrier(){
-        size = 5;
-        location = new int[size][2];
+        health = size = 5;
+        alive = true;
 
-        for(int i = 0; i < size; i++){
-            for(int j = 0; j < 2; j++){
-                location[i][j] = 0;
-            }
-        }
     }
 
-    public void insertLocation(int col, int row, int part){
-        location[part][0] = col;
-        location[part][1] = row;
-    }
-
-    public int[] getlocation(int part){
-        return location[part];
-    }
-
-    public int getSize(){
+    public int getSize() {
         return size;
     }
 
-    public boolean isSunk() {
-        return sunk;
+    public int getHealth() {
+        return health;
     }
 
-    public void setSunk(boolean sunk) {
-        this.sunk = sunk;
+    public boolean isAlive() {
+        return alive;
+    }
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
+    }
+
+    public boolean isPlaced() {
+        return placed;
+    }
+
+    public void setPlaced(boolean placed) {
+        this.placed = placed;
+    }
+
+    public void decrementHealth(){
+        health--;
+        if(health <= 0){
+            alive = false;
+        }
     }
 }

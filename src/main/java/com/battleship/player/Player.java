@@ -13,45 +13,30 @@ public class Player {
     //will start at 0 then when player sets up his board will equal to 5 and win player must set oppenent's shipPieces to zero
     private int shipPieces;
 
-//    // appears as 1 on board
-//    private Carrier carrier;
-//
-//    // appears as 2 on board
-//    private BattleShip battleShip;
-//
-//    // appears as 3 on board
-//    private Cruiser cruiser;
-//
-//    // appears as 4 on board
-//    private Submarine submarine;
-//
-//    // appears as 5 on board
-//    private Destroyer destroyer;
-
     // appears as 5 on board
-    private boolean carrier;
+    private Carrier carrier;
 
     // appears as 4 on board
-    private boolean battleShip;
+    private BattleShip battleShip;
 
     // appears as 3 on board
-    private boolean cruiser;
+    private Cruiser cruiser;
 
     // appears as 2 on board
-    private boolean submarine;
+    private Submarine submarine;
 
     // appears as 1 on board
-    private boolean destroyer;
+    private Destroyer destroyer;
 
     public Player(){
         shipsBoard = new GameBoard();
         moveBoard = new GameBoard();
 
-        carrier = false;
-        battleShip = false;
-        cruiser = false;
-        submarine = false;
-        destroyer = false;
+        battleShip = null;
+        carrier = null;
+        cruiser = null;
+        submarine = null;
+        destroyer = null;
 
         shipPieces = 0;
     }
@@ -63,7 +48,11 @@ public class Player {
     // u = up
     // d = down
     public boolean insertCarrier(char align, char direction, int col, int row){
-        if(!carrier){
+        if(carrier == null){
+            carrier = new Carrier();
+        }
+
+        if(!carrier.isPlaced()){
             if(align == 'h' && direction == 'r' && col + 5 < 10){
                 for(int i = 0; i < 5; i++){
                     if(shipsBoard.getTile(col + i, row) != 0){
@@ -71,7 +60,7 @@ public class Player {
                     }
                     shipsBoard.insert(col + i, row, 5);
                 }
-                carrier = !carrier;
+                carrier.setPlaced(!carrier.isPlaced());
                 shipPieces++;
                 return true;
 
@@ -82,7 +71,7 @@ public class Player {
                     }
                     shipsBoard.insert(col - i, row, 5);
                 }
-                carrier = !carrier;
+                carrier.setPlaced(!carrier.isPlaced());
                 shipPieces++;
                 return true;
 
@@ -93,7 +82,7 @@ public class Player {
                     }
                     shipsBoard.insert(col, row + i, 5);
                 }
-                carrier = !carrier;
+                carrier.setPlaced(!carrier.isPlaced());
                 shipPieces++;
                 return true;
 
@@ -104,7 +93,7 @@ public class Player {
                     }
                     shipsBoard.insert(col, row - i, 5);
                 }
-                carrier = !carrier;
+                carrier.setPlaced(!carrier.isPlaced());
                 shipPieces++;
                 return true;
 
@@ -115,7 +104,11 @@ public class Player {
     }
 
     public boolean insertBattleShip(char align, char direction, int col, int row){
-        if(!battleShip){
+        if(battleShip == null){
+            battleShip = new BattleShip();
+        }
+
+        if(!battleShip.isPlaced()){
             if(align == 'h' && direction == 'r' && col + 4 < 10){
                 for(int i = 0; i < 5; i++){
                     if(shipsBoard.getTile(col + i, row) != 0){
@@ -123,7 +116,7 @@ public class Player {
                     }
                     shipsBoard.insert(col + i, row, 4);
                 }
-                battleShip = !battleShip;
+                battleShip.setPlaced(!battleShip.isPlaced());
                 shipPieces++;
                 return true;
 
@@ -134,7 +127,7 @@ public class Player {
                     }
                     shipsBoard.insert(col - i, row, 4);
                 }
-                battleShip = !battleShip;
+                battleShip.setPlaced(!battleShip.isPlaced());
                 shipPieces++;
                 return true;
 
@@ -145,7 +138,7 @@ public class Player {
                     }
                     shipsBoard.insert(col, row + i, 4);
                 }
-                battleShip = !battleShip;
+                battleShip.setPlaced(!battleShip.isPlaced());
                 shipPieces++;
                 return true;
 
@@ -156,7 +149,7 @@ public class Player {
                     }
                     shipsBoard.insert(col, row - i, 4);
                 }
-                battleShip = !battleShip;
+                battleShip.setPlaced(!battleShip.isPlaced());
                 shipPieces++;
                 return true;
 
@@ -167,7 +160,11 @@ public class Player {
     }
 
     public boolean insertCruiser(char align, char direction, int col, int row){
-        if(!cruiser){
+        if(cruiser == null){
+            cruiser = new Cruiser();
+        }
+
+        if(!cruiser.isPlaced()){
             if(align == 'h' && direction == 'r' && col + 3 < 10){
                 for(int i = 0; i < 5; i++){
                     if(shipsBoard.getTile(col + i, row) != 0){
@@ -175,7 +172,7 @@ public class Player {
                     }
                     shipsBoard.insert(col + i, row, 3);
                 }
-                cruiser = !cruiser;
+                cruiser.setPlaced(!cruiser.isPlaced());
                 shipPieces++;
                 return true;
 
@@ -186,7 +183,7 @@ public class Player {
                     }
                     shipsBoard.insert(col - i, row, 3);
                 }
-                cruiser = !cruiser;
+                cruiser.setPlaced(!cruiser.isPlaced());
                 shipPieces++;
                 return true;
 
@@ -197,7 +194,7 @@ public class Player {
                     }
                     shipsBoard.insert(col, row + i, 3);
                 }
-                cruiser = !cruiser;
+                cruiser.setPlaced(!cruiser.isPlaced());
                 shipPieces++;
                 return true;
 
@@ -208,7 +205,7 @@ public class Player {
                     }
                     shipsBoard.insert(col, row - i, 3);
                 }
-                cruiser = !cruiser;
+                cruiser.setPlaced(!cruiser.isPlaced());
                 shipPieces++;
                 return true;
 
@@ -219,7 +216,10 @@ public class Player {
     }
 
     public boolean insertDestroyer(char align, char direction, int col, int row){
-        if(!destroyer){
+        if(destroyer == null){
+            destroyer = new Destroyer();
+        }
+        if(!destroyer.isPlaced()){
             if(align == 'h' && direction == 'r' && col + 2 < 10){
                 for(int i = 0; i < 5; i++){
                     if(shipsBoard.getTile(col + i, row) != 0){
@@ -227,7 +227,7 @@ public class Player {
                     }
                     shipsBoard.insert(col + i, row, 2);
                 }
-                destroyer = !destroyer;
+                destroyer.setAlive(!destroyer.isPlaced());
                 shipPieces++;
                 return true;
 
@@ -238,7 +238,7 @@ public class Player {
                     }
                     shipsBoard.insert(col - i, row, 2);
                 }
-                destroyer = !destroyer;
+                destroyer.setAlive(!destroyer.isPlaced());
                 shipPieces++;
                 return true;
 
@@ -249,7 +249,7 @@ public class Player {
                     }
                     shipsBoard.insert(col, row + i, 2);
                 }
-                destroyer = !destroyer;
+                destroyer.setAlive(!destroyer.isPlaced());
                 shipPieces++;
                 return true;
 
@@ -260,7 +260,7 @@ public class Player {
                     }
                     shipsBoard.insert(col, row - i, 2);
                 }
-                destroyer = !destroyer;
+                destroyer.setAlive(!destroyer.isPlaced());
                 shipPieces++;
                 return true;
 
@@ -271,7 +271,10 @@ public class Player {
     }
 
     public boolean insertSubmarine(char align, char direction, int col, int row){
-        if(!submarine){
+        if(submarine == null){
+            submarine = new Submarine();
+        }
+        if(!submarine.isPlaced()){
             if(align == 'h' && direction == 'r' && col + 2 < 10){
                 for(int i = 0; i < 5; i++){
                     if(shipsBoard.getTile(col + i, row) != 0){
@@ -279,7 +282,7 @@ public class Player {
                     }
                     shipsBoard.insert(col + i, row, 1);
                 }
-                submarine = !submarine;
+                submarine.setPlaced(!submarine.isPlaced());
                 shipPieces++;
                 return true;
 
@@ -290,7 +293,7 @@ public class Player {
                     }
                     shipsBoard.insert(col - i, row, 1);
                 }
-                submarine = !submarine;
+                submarine.setPlaced(!submarine.isPlaced());
                 shipPieces++;
                 return true;
 
@@ -301,7 +304,7 @@ public class Player {
                     }
                     shipsBoard.insert(col, row + i, 1);
                 }
-                submarine = !submarine;
+                submarine.setPlaced(!submarine.isPlaced());
                 shipPieces++;
                 return true;
 
@@ -312,7 +315,7 @@ public class Player {
                     }
                     shipsBoard.insert(col, row - i, 1);
                 }
-                submarine = !submarine;
+                submarine.setPlaced(!submarine.isPlaced());
                 shipPieces++;
                 return true;
 
