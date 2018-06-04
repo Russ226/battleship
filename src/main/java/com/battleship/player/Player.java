@@ -472,6 +472,19 @@ public class Player {
         return 'm';
     }
 
+    // 9 == attacked there before
+    public void recordMove(int col, int row){
+        moveBoard.insert(col, row, 9);
+    }
+
+    public boolean checkIfMoved(int col, int row){
+        if(moveBoard.getTile(col, row) != 0){
+            return true;
+        }
+
+        return false;
+    }
+
     public GameBoard getShips() {
         return shipsBoard;
     }
