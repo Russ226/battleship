@@ -496,4 +496,24 @@ public class Player {
     public int getShipPieces() {
         return shipPieces;
     }
+
+    public Carrier getCarrier() {
+        return carrier;
+    }
+
+    public BattleShip getBattleShip() {
+        return battleShip;
+    }
+
+    public Cruiser getCruiser() {
+        return cruiser;
+    }
+
+    public Destroyer getDestroyer() {
+        return destroyer;
+    }
+
+    public Submarine getSubmarine() {
+        return submarine;
+    }
 }
