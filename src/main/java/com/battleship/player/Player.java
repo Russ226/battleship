@@ -23,10 +23,11 @@ public class Player {
     private Cruiser cruiser;
 
     // appears as 2 on board
-    private Submarine submarine;
+    private Destroyer destroyer;
 
     // appears as 1 on board
-    private Destroyer destroyer;
+    private Submarine submarine;
+
 
     public Player(){
         shipsBoard = new GameBoard();
@@ -322,7 +323,59 @@ public class Player {
             }
         }
         return false;
+    }
 
+    //checks if it hit any ships and if it does checks if its sunk
+    // 8 means hit
+    /*return values:
+        h == hit but not sunk
+        m == miss/already hit that ship/area prev
+        b == sunk battleship
+        c == sunk carrier
+        k == sunk cruiser
+        d == sunk destroyer
+        s == sunk submarine
+     */
+
+    public char registerHit(int col, int row){
+        if(shipsBoard.getTile(col, row) == 5){
+            shipsBoard.insert(col, row, 8);
+            carrier.decrementHealth();
+            if(!carrier.isAlive()){
+                return 'c';
+            }
+            return 'h';
+        }if(shipsBoard.getTile(col, row) == 4){
+            shipsBoard.insert(col, row, 8);
+            battleShip.decrementHealth();
+            if(!battleShip.isAlive()){
+                return 'b';
+            }
+            return 'h';
+        }if(shipsBoard.getTile(col, row) == 3){
+            shipsBoard.insert(col, row, 8);
+            cruiser.decrementHealth();
+            if(!cruiser.isAlive()){
+                return 'k';
+            }
+            return 'h';
+        }if(shipsBoard.getTile(col, row) == 2){
+            shipsBoard.insert(col, row, 8);
+            destroyer.decrementHealth();
+            if(!destroyer.isAlive()){
+                return 'd';
+            }
+            return 'h';
+        }if(shipsBoard.getTile(col, row) == 1){
+            shipsBoard.insert(col, row, 8);
+            submarine.decrementHealth();
+            if(!submarine.isAlive()){
+                return 's';
+            }
+            return 'h';
+        }
+
+        return 'm';
     }
 
     public GameBoard getShips() {
