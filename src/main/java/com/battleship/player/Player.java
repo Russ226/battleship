@@ -431,6 +431,7 @@ public class Player {
             shipsBoard.insert(col, row, 8);
             carrier.decrementHealth();
             if(!carrier.isAlive()){
+                shipPieces--;
                 return 'c';
             }
             return 'h';
@@ -438,6 +439,7 @@ public class Player {
             shipsBoard.insert(col, row, 8);
             battleShip.decrementHealth();
             if(!battleShip.isAlive()){
+                shipPieces--;
                 return 'b';
             }
             return 'h';
@@ -445,6 +447,7 @@ public class Player {
             shipsBoard.insert(col, row, 8);
             cruiser.decrementHealth();
             if(!cruiser.isAlive()){
+                shipPieces--;
                 return 'k';
             }
             return 'h';
@@ -452,6 +455,7 @@ public class Player {
             shipsBoard.insert(col, row, 8);
             destroyer.decrementHealth();
             if(!destroyer.isAlive()){
+                shipPieces--;
                 return 'd';
             }
             return 'h';
@@ -459,6 +463,7 @@ public class Player {
             shipsBoard.insert(col, row, 8);
             submarine.decrementHealth();
             if(!submarine.isAlive()){
+                shipPieces--;
                 return 's';
             }
             return 'h';
