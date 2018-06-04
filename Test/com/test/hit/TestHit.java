@@ -34,4 +34,53 @@ public class TestHit {
         assertEquals(player.registerHit(5,4), 'h');
         assertEquals(player.registerHit(5,4), 'm');
     }
+
+    @Test
+    public void testHitRegistrationBattleship(){
+        Player player = new Player();
+
+        player.insertBattleShip('h', 'r', 4,4);
+        assertEquals(player.registerHit(5,4), 'h');
+
+        player.registerHit( 6,4);
+        player.registerHit( 7,4);
+        assertEquals(player.registerHit(8,4), 'b');
+
+    }
+
+    @Test
+    public void testHitRegistrationCruise(){
+        Player player = new Player();
+
+        player.insertCruiser('h', 'r', 4,4);
+        assertEquals(player.registerHit(5,4), 'h');
+
+        player.registerHit( 6,4);
+        assertEquals(player.registerHit( 7,4), 'k');
+
+    }
+
+    @Test
+    public void testHitRegistrationDestroyer(){
+        Player player = new Player();
+
+        player.insertDestroyer('h', 'r', 4,4);
+        assertEquals(player.registerHit(5,4), 'h');
+
+        assertEquals(player.registerHit( 6,4), 'd');
+
+
+    }
+
+    @Test
+    public void testHitRegistrationSubmarine(){
+        Player player = new Player();
+
+        player.insertSubmarine('h', 'r', 4,4);
+        assertEquals(player.registerHit(5,4), 'h');
+
+        assertEquals(player.registerHit( 6,4), 's');
+
+
+    }
 }
