@@ -13,19 +13,29 @@ public class GameBoard {
     }
 
     public void insert(int col, int row, int piece){
-        board[col][row] = piece;
+        board[row][col] = piece;
     }
 
     public int getTile(int col, int row){
-        return board[col][row];
+        return board[row][col];
     }
 
     public void printBoard(){
+        System.out.print("   ");
+        for(int i = 0; i < 10; i++){
+            System.out.print(i + " ");
+        }
+
         for(int i = 0; i < 10; i++){
             System.out.print("\n");
             for(int j = 0; j < 10; j++){
+                if(j == 0){
+                    System.out.print(i + "| ");
+                }
                 System.out.print(board[i][j] + " ");
             }
+
+
         }
     }
 }
