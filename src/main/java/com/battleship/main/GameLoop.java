@@ -18,62 +18,122 @@ public class GameLoop {
     }
 
     public void player1SetUpBoard(){
+        int shipChoice, col, row;
+        char align, dir;
+
         while(player1.getShipPieces() != 5) {
 
             System.out.println("Your board so far: ");
             player1.getShips().printBoard();
             System.out.println('\n');
 
-            int shipChoice = chooseShip();
-            char align = chooseAlignment();
-            char dir = chooseDirection(align);
-            int col = chooseColumn();
-            int row =  chooseRow();
+            shipChoice = chooseShip(false, player1);
+            align = chooseAlignment();
+            dir = chooseDirection(align);
+            col = chooseColumn();
+            row =  chooseRow();
 
             if(shipChoice == 5){
-                player1.insertCarrier(align, dir, col, row);
+                if(!player1.insertCarrier(align, dir, col, row)){
+                    System.out.println("Unable to place ship");
+                }
+
             }if(shipChoice == 4){
-                player1.insertBattleShip(align, dir, col, row);
+                if(!player1.insertBattleShip(align, dir, col, row)){
+                    System.out.println("Unable to place ship");
+                }
             }if(shipChoice == 3){
-                player1.insertCruiser(align, dir, col, row);
+                if(!player1.insertCruiser(align, dir, col, row)){
+                    System.out.println("Unable to place ship");
+                }
             }if(shipChoice == 2){
-                player1.insertDestroyer(align, dir, col, row);
+                if(!player1.insertDestroyer(align, dir, col, row)){
+                    System.out.println("Unable to place ship");
+                }
             }if(shipChoice == 1){
-                player1.insertSubmarine(align, dir, col, row);
+                if(!player1.insertSubmarine(align, dir, col, row)){
+                    System.out.println("Unable to place ship");
+                }
             }
 
         }
+
+        System.out.println("Your board: ");
+        player1.getShips().printBoard();
+
+        Scanner reader = new Scanner(System.in);
+        char choice;
+        do{
+            System.out.println("\n Would you like to change any ships?(y or n)");
+
+            choice = reader.next().charAt(0);
+            if(choice == 'y'){
+                shipChoice = chooseShip(true, player1);
+                align = chooseAlignment();
+                dir = chooseDirection(align);
+                col = chooseColumn();
+                row =  chooseRow();
+
+                player1.changeShipInsert(shipChoice,align,dir,col,row);
+
+            }
+        }while (choice != 'n');
+
 
     }
 
 
-    private int chooseShip(){
+    private int chooseShip(boolean edit, Player player){
         int shipType;
         Scanner reader = new Scanner(System.in);
+        if(!edit) {
+            do {
+                System.out.println("Choose what ship to place on the board:(press the appropriate number to place ship)");
+                if (player.getSubmarine() == null || !player.getSubmarine().isPlaced()) {
+                    System.out.println("1.Submarine");
+                }
+                if (player.getDestroyer() == null || !player.getDestroyer().isPlaced()) {
+                    System.out.println("2.Destroyer");
+                }
+                if (player.getCruiser() == null || !player.getCruiser().isPlaced()) {
+                    System.out.println("3.Cruiser");
+                }
+                if (player.getBattleShip() == null || !player.getBattleShip().isPlaced()) {
+                    System.out.println("4.Battleship");
+                }
+                if (player.getCarrier() == null || !player.getCarrier().isPlaced()) {
+                    System.out.println("5.Carrier");
+                }
 
-        do{
-            System.out.println("Choose what ship to place on the board:(press the appropriate number to place ship)");
-            if(player1.getSubmarine() == null){
+                System.out.print("chose number: ");
+                shipType = reader.nextInt();
+
+
+                if (shipType < 0 && shipType > 6) {
+                    System.out.println("Number must be between 1 and 5");
+                }
+            } while (shipType < 0 || shipType > 6);
+        }else{
+            do {
+                System.out.println("Choose what ship to place on the board:(press the appropriate number to place ship)");
+
                 System.out.println("1.Submarine");
-            }if(player1.getDestroyer() == null){
                 System.out.println("2.Destroyer");
-            }if(player1.getCruiser() == null){
                 System.out.println("3.Cruiser");
-            }if(player1.getBattleShip() == null){
                 System.out.println("4.Battleship");
-            }if(player1.getCarrier() == null){
                 System.out.println("5.Carrier");
+
+
+                System.out.print("chose number: ");
+                shipType = reader.nextInt();
+
+
+                if (shipType < 0 && shipType > 6) {
+                    System.out.println("Number must be between 1 and 5");
+                }
             }
-
-            System.out.print("chose number: ");
-            shipType = reader.nextInt();
-
-
-            if( shipType < 0 && shipType > 6){
-                System.out.println("Number must be between 1 and 5");
-            }
+            while (shipType < 0 || shipType > 6);
         }
-        while(shipType < 0 || shipType > 6);
 
 
         return shipType;
