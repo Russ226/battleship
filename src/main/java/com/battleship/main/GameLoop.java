@@ -23,10 +23,10 @@ public class GameLoop {
         int inputX, inputY;
         char checkPrevMoves;
 
-        System.out.println("Player 1 set up your board");
+        System.out.println("Player 1 set up your board\n");
         player1SetUpBoard();
 
-        System.out.println("Player 2 set up your board");
+        System.out.println("Player 2 set up your board\n");
         player2SetUpBoard();
 
         while(!won){
@@ -210,7 +210,7 @@ public class GameLoop {
         while(player2.getShipPieces() != 5) {
 
             System.out.println("Your board so far: ");
-            player1.getShips().printBoard();
+            player2.getShips().printBoard();
             System.out.println('\n');
 
             shipChoice = chooseShip(false, player2);
@@ -245,7 +245,7 @@ public class GameLoop {
         }
 
         System.out.println("Your board: ");
-        player1.getShips().printBoard();
+        player2.getShips().printBoard();
 
         Scanner reader = new Scanner(System.in);
         char choice;
@@ -260,7 +260,7 @@ public class GameLoop {
                 col = chooseColumn();
                 row =  chooseRow();
 
-                player1.changeShipInsert(shipChoice,align,dir,col,row);
+                player2.changeShipInsert(shipChoice,align,dir,col,row);
 
             }
         }while (choice != 'n');
