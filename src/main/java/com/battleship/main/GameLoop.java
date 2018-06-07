@@ -33,6 +33,7 @@ public class GameLoop {
             // player 1's turn
             if(!turn){
                 turn = true;
+                System.out.println("\n player 1's turn");
                 do{
                     System.out.println("\n Would you like to check your previous moves?(y or n)");
 
@@ -79,50 +80,52 @@ public class GameLoop {
                 }
 
             }else{
-                    do{
-                        System.out.println("\n Would you like to check your previous moves?(y or n)");
+                turn = false;
+                System.out.println("\n player 2's turn");
+                do{
+                    System.out.println("\n Would you like to check your previous moves?(y or n)");
 
-                        checkPrevMoves = reader.next().charAt(0);
-                        if(checkPrevMoves == 'y'){
-                            player2.getMoveBoard().printBoard();
+                    checkPrevMoves = reader.next().charAt(0);
+                    if(checkPrevMoves == 'y'){
+                        player2.getMoveBoard().printBoard();
 
-                        }
-                    }while (checkPrevMoves != 'n');
-
-                    do {
-                        System.out.println("Player 2 pick X coordinate: ");
-                        inputX = reader.nextInt();
-
-                        System.out.println("Player 2 pick Y coordinate: ");
-                        inputY = reader.nextInt();
-
-                        if(inputX > 10 && inputX < 0){
-                            System.out.println("Invalid X coordinate " + inputX);
-                        }
-
-                        if(inputY > 10 && inputY < 0){
-                            System.out.println("Invalid Y coordinate " + inputY);
-                        }
-
-                    }while(inputX > 10 && inputX < 0 && inputX > 10 && inputX < 0);
-
-                    player2.recordMove(inputX, inputY);
-                    char hit = player1.registerHit(inputX,inputY);
-                    if(hit == 'm'){
-                        System.out.println("Player 1 misses");
-                    }else if(hit == 'h'){
-                        System.out.println("Player 1 hits a ship");
-                    }else if(hit == 'b'){
-                        System.out.println("Player 1 sinks a battleship");
-                    }else if(hit == 'c'){
-                        System.out.println("Player 1 sinks a carrier");
-                    }else if(hit == 'k'){
-                        System.out.println("Player 1 sinks a cruiser");
-                    }else if(hit == 'd'){
-                        System.out.println("Player 1 sinks a destroyer");
-                    }else if(hit == 's'){
-                        System.out.println("Player 1 sinks a submarine");
                     }
+                }while (checkPrevMoves != 'n');
+
+                do {
+                    System.out.println("Player 2 pick X coordinate: ");
+                    inputX = reader.nextInt();
+
+                    System.out.println("Player 2 pick Y coordinate: ");
+                    inputY = reader.nextInt();
+
+                    if(inputX > 10 && inputX < 0){
+                        System.out.println("Invalid X coordinate " + inputX);
+                    }
+
+                    if(inputY > 10 && inputY < 0){
+                        System.out.println("Invalid Y coordinate " + inputY);
+                    }
+
+                }while(inputX > 10 && inputX < 0 && inputX > 10 && inputX < 0);
+
+                player2.recordMove(inputX, inputY);
+                char hit = player1.registerHit(inputX,inputY);
+                if(hit == 'm'){
+                    System.out.println("Player 2 misses");
+                }else if(hit == 'h'){
+                    System.out.println("Player 2 hits a ship");
+                }else if(hit == 'b'){
+                    System.out.println("Player 2 sinks a battleship");
+                }else if(hit == 'c'){
+                    System.out.println("Player 2 sinks a carrier");
+                }else if(hit == 'k'){
+                    System.out.println("Player 2 sinks a cruiser");
+                }else if(hit == 'd'){
+                    System.out.println("Player 2 sinks a destroyer");
+                }else if(hit == 's'){
+                    System.out.println("Player 2 sinks a submarine");
+                }
 
 
             }
@@ -179,7 +182,7 @@ public class GameLoop {
 
         }
 
-        System.out.println("Your board: ");
+        System.out.println("Your board:\n");
         player1.getShips().printBoard();
 
         Scanner reader = new Scanner(System.in);
@@ -209,7 +212,7 @@ public class GameLoop {
 
         while(player2.getShipPieces() != 5) {
 
-            System.out.println("Your board so far: ");
+            System.out.println("Your board so far:\n");
             player2.getShips().printBoard();
             System.out.println('\n');
 

@@ -267,7 +267,7 @@ public class Player {
                     }
                     shipsBoard.insert(col + i, row, 2);
                 }
-                destroyer.setAlive(!destroyer.isPlaced());
+                destroyer.setPlaced(!destroyer.isPlaced());
                 shipPieces++;
                 return true;
 
@@ -281,7 +281,7 @@ public class Player {
                     }
                     shipsBoard.insert(col - i, row, 2);
                 }
-                destroyer.setAlive(!destroyer.isPlaced());
+                destroyer.setPlaced(!destroyer.isPlaced());
                 shipPieces++;
                 return true;
 
@@ -295,7 +295,7 @@ public class Player {
                     }
                     shipsBoard.insert(col, row - i, 2);
                 }
-                destroyer.setAlive(!destroyer.isPlaced());
+                destroyer.setPlaced(!destroyer.isPlaced());
                 shipPieces++;
                 return true;
 
@@ -309,7 +309,7 @@ public class Player {
                     }
                     shipsBoard.insert(col, row + i, 2);
                 }
-                destroyer.setAlive(!destroyer.isPlaced());
+                destroyer.setPlaced(!destroyer.isPlaced());
                 shipPieces++;
                 return true;
 
